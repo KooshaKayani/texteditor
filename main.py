@@ -6,7 +6,6 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-#this is a test to see the code
 # GUI FILE
 from ui_main import Ui_MainWindow
 from table_sample import Ui_Table
