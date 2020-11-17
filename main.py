@@ -46,6 +46,7 @@ class MainWindow(QMainWindow):
         self.ui.actionNumber_List.triggered.connect(self.NumberedList)
         self.ui.actionUnderline.triggered.connect(self.Underl)
         self.ui.actionItalic.triggered.connect(self.Italic)
+        self.ui.actionimage.triggered.connect(self.insertImage)
         self.ui.actionBold.triggered.connect(self.Bold)
         self.ui.actionHTML.triggered.connect(self.HTML)
         self.ui.actionTEXT.triggered.connect(self.HTtoText)
@@ -76,26 +77,64 @@ class MainWindow(QMainWindow):
         dlg.exec()
 
     def addIndents(self):
-        tab = "\t"
+        # Grab the cursor
         cursor = self.ui.textEdit.textCursor()
 
-        start = cursor.selectionStart()
-        end = cursor.selectionEnd()
+        if cursor.hasSelection():
 
-        cursor.setPosition(end)
-        cursor.movePosition(cursor.EndOfLine)
-        end = cursor.position()
+            # Store the current line/block number
+            temp = cursor.blockNumber()
 
-        cursor.setPosition(start)
-        cursor.movePosition(cursor.StartOfLine)
-        start = cursor.position()
-        print (cursor.position(), end)
-        print(tab)
-        while cursor.position() < end:
-            cursor.movePosition(cursor.StartOfLine)
-            cursor.insertText(tab)
-            cursor.movePosition(cursor.EndOfLine)
-            break
+            # Move to the selection's end
+            cursor.setPosition(cursor.anchor())
+
+            # Calculate range of selection
+            diff = cursor.blockNumber() - temp
+
+            direction = QtGui.QTextCursor.Up if diff > 0 else QtGui.QTextCursor.Down
+
+            # Iterate over lines (diff absolute value)
+            for n in range(abs(diff) + 1):
+
+                # Move to start of each line
+                cursor.movePosition(QtGui.QTextCursor.StartOfLine)
+
+                # Insert tabbing
+                cursor.insertText("\t")
+
+                # And move back up
+                cursor.movePosition(direction)
+
+        # If there is no selection, just insert a tab
+        else:
+            cursor.insertText("\t")
+            
+    def insertImage(self):
+
+        # Get image file name
+        #PYQT5 Returns a tuple in PyQt5
+        filename = QtWidgets.QFileDialog.getOpenFileName(self, 'Insert image',".","Images (*.png *.xpm *.jpg *.bmp *.gif)")[0]
+
+        if filename:
+            
+            # Create image object
+            image = QtGui.QImage(filename)
+
+            # Error if unloadable
+            if image.isNull():
+
+                popup = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Critical,
+                                          "Image load error",
+                                          "Could not load image file!",
+                                          QtWidgets.QMessageBox.Ok,
+                                          self)
+                popup.show()
+
+            else:
+
+                cursor = self.ui.textEdit.textCursor()
+
+                cursor.insertImage(image,filename)
 
     def Underl(self):
         ul = self.ui.textEdit.fontUnderline()
@@ -136,11 +175,6 @@ class MainWindow(QMainWindow):
     def NumberedList(self):
         print("numbered connects!")
         self.ui.textEdit.insertHtml("<ol><li> ...</li></ol>")
-
-    def onEmployeeBtnClicked(self):
-        """Launch the employee dialog."""
-        dlg = EmployeeDlg(self)
-        dlg.exec()
 
     def open(self):
         try:        

@@ -67,7 +67,7 @@ class Ui_Table(object):
 
     def retranslateUi(self, Table):
         _translate = QtCore.QCoreApplication.translate
-        Table.setWindowTitle(_translate("Table", "Dialog"))
+        Table.setWindowTitle(_translate("Table", "Table"))
         self.column_lable.setText(_translate("Table", "Column"))
         self.Row_lable.setText(_translate("Table", "Row"))
 

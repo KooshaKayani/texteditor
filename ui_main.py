@@ -187,6 +187,8 @@ class Ui_MainWindow(object):
         self.actionHTML.setObjectName("actionHTML")
         self.actionTEXT = QtWidgets.QAction(MainWindow)
         self.actionTEXT.setObjectName("actionTEXT")
+        self.actionimage = QtWidgets.QAction(MainWindow)
+        self.actionimage.setObjectName("actionimage")
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addAction(self.actionSave_As)
         self.menuFile.addAction(self.actionOpen)
@@ -204,6 +206,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionUnderline)
         self.toolBar.addAction(self.actionBold)
         self.toolBar.addSeparator()
+        self.toolBar.addAction(self.actionimage)
         self.toolBar.addAction(self.actionTable)
         self.toolBar.addAction(self.actionBullet_Points)
         self.toolBar.addAction(self.actionNumber_List)
@@ -227,7 +230,7 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\';\"><br /></p></body></html>"))
+"<p style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.htmlEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -276,12 +279,19 @@ class Ui_MainWindow(object):
         self.actionNumber_List.setText(_translate("MainWindow", "Number List"))
         self.actionNumber_List.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Number List</span></p></body></html>"))
         self.actionCut.setText(_translate("MainWindow", "Cut"))
+        self.actionCut.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Cut</span></p></body></html>"))
         self.actionPaste.setText(_translate("MainWindow", "Paste"))
+        self.actionPaste.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Paste</span></p></body></html>"))
         self.actionUndo.setText(_translate("MainWindow", "Undo"))
+        self.actionUndo.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Undo</span></p></body></html>"))
         self.actionRedo.setText(_translate("MainWindow", "Redo"))
+        self.actionRedo.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Redo</span></p></body></html>"))
         self.actionHTML.setText(_translate("MainWindow", "HTML"))
+        self.actionHTML.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">HTML</span></p></body></html>"))
         self.actionTEXT.setText(_translate("MainWindow", "TEXT"))
-        self.actionTEXT.setToolTip(_translate("MainWindow", "To Text"))
+        self.actionTEXT.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">To Text</span></p></body></html>"))
+        self.actionimage.setText(_translate("MainWindow", "Image"))
+        self.actionimage.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">insert image</span></p></body></html>"))
 
 
 if __name__ == "__main__":
