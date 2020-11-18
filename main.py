@@ -8,7 +8,8 @@ from PyQt5.QtCore import *
 
 # GUI FILE
 from ui_main import Ui_MainWindow
-from table_sample import Ui_Table
+#from table_sample import Ui_Table
+from ext import *
 FONT_SIZES = [7, 8, 9, 10, 11, 12, 13, 14, 18, 24, 36, 48, 64, 72, 96, 144, 288]
 
 class MainWindow(QMainWindow):
@@ -38,7 +39,7 @@ class MainWindow(QMainWindow):
         self.ui.actioncolor.triggered.connect(self.Changecolor)
         self.ui.actionHighlight_text.triggered.connect(self.Highlight)
         self.ui.actionIndents.triggered.connect(self.addIndents)
-        self.ui.actionTable.triggered.connect(self.inserttable)
+        self.ui.actionTable.triggered.connect(table_sample.Table(self).show)
         self.ui.actionBullet_Points.triggered.connect(self.BulletList)
         self.ui.actionalignLeft.triggered.connect(self.alignLeft)
         self.ui.actionAlignRight.triggered.connect(self.alignRight)
@@ -135,7 +136,8 @@ class MainWindow(QMainWindow):
                 cursor = self.ui.textEdit.textCursor()
 
                 cursor.insertImage(image,filename)
-
+                cursor.insertTable(12,12)
+    
     def Underl(self):
         ul = self.ui.textEdit.fontUnderline()
  
@@ -170,11 +172,11 @@ class MainWindow(QMainWindow):
 
     def BulletList(self):
         print("bullet connects!")
-        self.ui.textEdit.insertHtml("<ul><li> ...</li></ul>")
+        self.ui.textEdit.insertHtml("<ul><li>&nbsp;</li></ul>")
 
     def NumberedList(self):
         print("numbered connects!")
-        self.ui.textEdit.insertHtml("<ol><li> ...</li></ol>")
+        self.ui.textEdit.insertHtml("<ol><li>&nbsp;</li></ol>")
 
     def open(self):
         try:        
