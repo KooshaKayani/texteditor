@@ -39,7 +39,7 @@ class MainWindow(QMainWindow):
         self.ui.actioncolor.triggered.connect(self.Changecolor)
         self.ui.actionHighlight_text.triggered.connect(self.Highlight)
         self.ui.actionIndents.triggered.connect(self.addIndents)
-        self.ui.actionTable.triggered.connect(table_sample.Table(self).show)
+        self.ui.actionTable.triggered.connect(self.inserttable)
         self.ui.actionBullet_Points.triggered.connect(self.BulletList)
         self.ui.actionalignLeft.triggered.connect(self.alignLeft)
         self.ui.actionAlignRight.triggered.connect(self.alignRight)
@@ -390,9 +390,9 @@ class EmployeeDlg(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         # Create an instance of the GUI
-        self.ui = Ui_Table()
+        self.ui = table_sample.Table()
         # Run the .setupUi() method to show the GUI
-        self.ui.setupUi(self)
+        self.ui.initUI(self)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
