@@ -19,6 +19,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.show()
+        
 
         
     # We need references to these actions/settings to update as selection changes, so attach to self.
@@ -39,7 +40,7 @@ class MainWindow(QMainWindow):
         self.ui.actioncolor.triggered.connect(self.Changecolor)
         self.ui.actionHighlight_text.triggered.connect(self.Highlight)
         self.ui.actionIndents.triggered.connect(self.addIndents)
-        self.ui.actionTable.triggered.connect(self.inserttable)
+        self.ui.actionTable.triggered.connect(table_sample.Table(self).show)
         self.ui.actionBullet_Points.triggered.connect(self.BulletList)
         self.ui.actionalignLeft.triggered.connect(self.alignLeft)
         self.ui.actionAlignRight.triggered.connect(self.alignRight)
