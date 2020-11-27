@@ -122,6 +122,8 @@ class Table(QtWidgets.QDialog):
             fmt.setCellSpacing(space)
 
             fmt.setBackground(QColor(Tcolor))
+            fmt.setWidth(QtGui.QTextLength(QtGui.QTextLength.PercentageLength, 100))
+            
             
             # Inser the new table
             cursor.insertTable(rows,cols,fmt)
