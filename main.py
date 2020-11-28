@@ -40,6 +40,7 @@ class MainWindow(QMainWindow):
         self.ui.actioncolor.triggered.connect(self.Changecolor)
         self.ui.actionHighlight_text.triggered.connect(self.Highlight)
         self.ui.actionIndents.triggered.connect(self.addIndents)
+        self.ui.actionDedent.triggered.connect(self.dedent)
         self.ui.actionTable.triggered.connect(table_sample.Table(self).show)
         self.ui.actionBullet_Points.triggered.connect(self.BulletList)
         self.ui.actionalignLeft.triggered.connect(self.alignLeft)
@@ -123,10 +124,20 @@ class MainWindow(QMainWindow):
 
         # Grab the current table, if there is one
         table = cursor.currentTable()
+        
+        #Grab text
+        text=cursor.selectedText()
 
         # Above will return 0 if there is no current table, in which case
         # we call the normal context menu. If there is a table, we create
         # our own context menu specific to table interaction
+        if text:
+            menu = QtWidgets.QMenu(self)
+            appendRowAction = QtWidgets.QAction("Append row",self)
+            menu.addAction(appendRowAction)
+            menu.move(pos)
+
+            menu.show()
         if table:
 
             menu = QtWidgets.QMenu(self)
@@ -211,7 +222,7 @@ class MainWindow(QMainWindow):
             menu.show()
 
         else:
-
+            
             event = QtGui.QContextMenuEvent(QtGui.QContextMenuEvent.Mouse,QtCore.QPoint())
 
             self.ui.textEdit.contextMenuEvent(event)
@@ -230,6 +241,8 @@ class MainWindow(QMainWindow):
 
         # Delete the cell's row
         table.removeRows(cell.row(),1)
+    
+
 
     def removeCol(self):
 
@@ -354,6 +367,57 @@ class MainWindow(QMainWindow):
                     self.ui.textEdit.setText(file.read())
         except:
             print("Open Error")
+
+
+    def handleDedent(self,cursor):
+
+        cursor.movePosition(QtGui.QTextCursor.StartOfLine)
+
+        # Grab the current line
+        line = cursor.block().text()
+
+        # If the line starts with a tab character, delete it
+        if line.startswith("\t"):
+
+            # Delete next character
+            cursor.deleteChar()
+
+        # Otherwise, delete all spaces until a non-space character is met
+        else:
+            for char in line[:8]:
+
+                if char != " ":
+                    break
+
+                cursor.deleteChar()
+
+    def dedent(self):
+
+        cursor = self.ui.textEdit.textCursor()
+
+        if cursor.hasSelection():
+
+            # Store the current line/block number
+            temp = cursor.blockNumber()
+
+            # Move to the selection's last line
+            cursor.setPosition(cursor.anchor())
+
+            # Calculate range of selection
+            diff = cursor.blockNumber() - temp
+
+            direction = QtGui.QTextCursor.Up if diff > 0 else QtGui.QTextCursor.Down
+
+            # Iterate over lines
+            for n in range(abs(diff) + 1):
+
+                self.handleDedent(cursor)
+
+                # Move up
+                cursor.movePosition(direction)
+
+        else:
+            self.handleDedent(cursor)
 
 
     def save(self):

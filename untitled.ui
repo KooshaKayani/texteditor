@@ -230,6 +230,7 @@ border-bottom: 0px solid;
    <addaction name="actionBullet_Points"/>
    <addaction name="actionNumber_List"/>
    <addaction name="actionIndents"/>
+   <addaction name="actionDedent"/>
    <addaction name="separator"/>
    <addaction name="actionalignLeft"/>
    <addaction name="actionAlign_center"/>
@@ -515,6 +516,14 @@ border-bottom: 0px solid;
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;insert image&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionDedent">
+   <property name="text">
+    <string>Dedent</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Dedent&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </action>
  </widget>

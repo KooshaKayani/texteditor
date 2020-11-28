@@ -189,6 +189,8 @@ class Ui_MainWindow(object):
         self.actionTEXT.setObjectName("actionTEXT")
         self.actionimage = QtWidgets.QAction(MainWindow)
         self.actionimage.setObjectName("actionimage")
+        self.actionDedent = QtWidgets.QAction(MainWindow)
+        self.actionDedent.setObjectName("actionDedent")
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addAction(self.actionSave_As)
         self.menuFile.addAction(self.actionOpen)
@@ -211,6 +213,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionBullet_Points)
         self.toolBar.addAction(self.actionNumber_List)
         self.toolBar.addAction(self.actionIndents)
+        self.toolBar.addAction(self.actionDedent)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionalignLeft)
         self.toolBar.addAction(self.actionAlign_center)
@@ -292,6 +295,8 @@ class Ui_MainWindow(object):
         self.actionTEXT.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">To Text</span></p></body></html>"))
         self.actionimage.setText(_translate("MainWindow", "Image"))
         self.actionimage.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">insert image</span></p></body></html>"))
+        self.actionDedent.setText(_translate("MainWindow", "Dedent"))
+        self.actionDedent.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#000000;\">Dedent</span></p></body></html>"))
 
 
 if __name__ == "__main__":
